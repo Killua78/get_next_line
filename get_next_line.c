@@ -12,6 +12,7 @@
 
 #include "get_next_line.h"
 
+// we extract line from page
 char	*readbyte(char **page, char *line)
 {
 	char	*temp;
@@ -33,6 +34,7 @@ char	*readbyte(char **page, char *line)
 	return (line);
 }
 
+// everything is in the name xd
 char	*read_until_newline(int fd, char **page)
 {
 	char	*temp;
@@ -54,6 +56,7 @@ char	*read_until_newline(int fd, char **page)
 	return (*page);
 }
 
+// same as above
 char	*get_next_line(int fd)
 {
 	char			*line;
@@ -81,13 +84,10 @@ char	*get_next_line(int fd)
 /*
 int main()
 {
-    char*   filename;
-    int fd;
-    char    buffer[1024];
-    int bytesread;
-
-    filename = "read.txt";
-    fd = open(filename, O_RDWR);
+	char*   filename = "get_next_line.h";
+    int fd = open(filename, O_RDWR);
+	char *line = get_next_line(fd);
+	int i = 3;
 
     if (fd == -1)
     {
@@ -99,7 +99,20 @@ int main()
         printf("File opened successfully\n");
     }
 
-    bytesread = read(fd, buffer, sizeof(buffer));
-    printf("%d bytes read\n", bytesread);
-    printf("File content: %s\n", buffer);
+	printf("1 : %s\n", line);
+	free(line);
+
+	line = get_next_line(fd);
+	printf("2 : %s\n", line);
+	free(line);
+
+	printf("           ------------ BOUCLE -----------\n");
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%d ", i);
+		printf(": %s\n", line);
+		free(line);
+		i++;
+	}
+	close(fd);
 }*/
